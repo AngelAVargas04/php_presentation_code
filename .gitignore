@@ -1,0 +1,7 @@
+.idea
+.vscode
+vendor
+08_forms_superglobals/uploads
+08_forms_superglobals/contacts.json
+10_databases/contacts.db
+10_databases/uploads
