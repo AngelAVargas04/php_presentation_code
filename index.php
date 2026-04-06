@@ -25,15 +25,15 @@
         <?php 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Grab data from inputs
-            $num01 = filter_input(INPUT_POST, "one", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-            $num02 = filter_input(INPUT_POST, "two", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $num01 = filter_input(INPUT_POST, "one", FILTER_SANITIZE_NUMBER_FLOAT);
+            $num02 = filter_input(INPUT_POST, "two", FILTER_SANITIZE_NUMBER_FLOAT);
             $operator = htmlspecialchars($_POST["operator"]);
 
             $errors = false;
 
             // Error handlers
             if ($num01 === "" || $num02 === "") {
-                echo "<p class='calc-error'> Fill in all fields! </p>";
+                echo "<p class='calc-error'> Fill in all fields please </p>";
                 $errors = true;
             }
 
@@ -43,13 +43,13 @@
                     "add"      => $num01 + $num02,
                     "subtract" => $num01 - $num02,
                     "multiply" => $num01 * $num02,
-                    "divide"   => ($num02 == 0) ? null : $num01 / $num02,
-                    default    => null,
+                    "divide"   => ($num02 == 0) ? null : $num01 / $num02
+
                 };
 
                 if ($value === null) {
                     $errors = true;
-                    echo "<p class='calc-error'>" . ($operator === "divide" ? "You cannot divide by zero!" : "Something went wrong!") . "</p>";
+                    echo "<p class='calc-error'>" . ($operator === "divide" ? "You cannot divide by zero!" : "What happened here?") . "</p>";
                 }
 
                 if (!$errors) {
